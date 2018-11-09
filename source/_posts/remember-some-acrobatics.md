@@ -176,3 +176,54 @@ $ docker exec -u postgres ${CONTAINER_NAME} pg_dumpall -c > db.sql
 ```bash
 $ cat db.sql | docker exec -i ${CONTAINER_NAME} psql -U ${DB_USER} -d ${DB_NAME}
 ```
+
+## CentOS 7安装shadowsocks-libev
+
+- 下载repo文件并安装shadowsocks-libev
+
+```bash
+$ wget -P /etc/yum.repos.d/ https://copr.fedoraproject.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
+$ yum update
+$ yum install shadowsocks-libev
+```
+
+如果安装报类似如下错误
+
+```text
+Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
+           Requires: libsodium >= 1.0.4
+Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
+           Requires: mbedtls
+```
+
+说明系统没有启用EPEL，那么我们需要首先启用EPEL，再安装shadowsocks-libev
+
+```bash
+$ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ install -y shadowsocks-libev
+```
+
+- 修改配置文件
+
+```
+$ vi /etc/shadowsocks-libev/config.json
+{
+    "server": "0.0.0.0",
+    "server_port": 9999,
+    "password": "password",
+    "timeout": 60,
+    "method": "aes-256-cfb"
+}
+```
+
+- 启动并设置开机自启动
+
+```bash
+$ systemctl enable --now shadowsocks-libev
+```
+
+- 查看运行状态
+
+```bash
+$ systemctl status shadowsocks-libev
+```
