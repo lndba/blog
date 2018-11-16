@@ -3,13 +3,13 @@ title: 记一些杂技（持续更新）
 date: 2017-06-03
 ---
 
-- 命令行连接shadowsocks客户端
+## 命令行连接shadowsocks客户端
 
 ```bash
 sslocal -s IP -p PORT -l LOCAL_PORT -k PASSWORD -m 加密方式
 ```
 
-- 修改npm源
+## 修改npm源
 
 在`~/.npmrc`里添加下面这行
 
@@ -25,13 +25,13 @@ npm install -gd package --registry=http://registry.npm.taobao.org
 npm config set registry http://registry.npm.taobao.org
 ```
 
-- 查看sqlite表结构
+## 查看sqlite表结构
 
 ```sql
 .schema tab_name
 ```
 
-- Ubuntu chromium安装Flash
+## Ubuntu chromium安装Flash
 
 ```bash
 sudo apt-get install chromium-browser
@@ -39,26 +39,26 @@ sudo apt-get install pepperflashplugin-nonfree
 sudo update-pepperflashplugin-nonfree --install
 ```
 
-- Ubuntu rpm包转deb
+## Ubuntu rpm包转deb
 
 ```bash
 sudo apt-get install alien
 sudo alien xxx.rpm
 ```
 
-- Ubuntu任务栏点击最小化
+## Ubuntu任务栏点击最小化
 
 ```bash
 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
 ```
 
-- Linux制作U盘镜像
+## Linux制作U盘镜像
 
 ```bash
 dd if=ISOFILE of=/dev/sdX
 ```
 
-- Docker中Python中文错误
+## Docker中Python中文错误
 
 > UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-8: ordinal not in range(128)
 
@@ -76,14 +76,14 @@ export LANG_ALL=en_US.utf8
 export LC_ALL=en_US.utf8
 ```
 
-- 修改Linux PS1前缀
+## 修改Linux PS1前缀
 
 ```bash
 # .bashrc
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
 
-- 命令行设置代理
+## 命令行设置代理
 
 ```bash
 # .bashrc
@@ -100,25 +100,25 @@ machine IP
   password Token
 ```
 
-- pip更新所有包
+## pip更新所有包
 
 ```bash
 pip install -U $(pip freeze | awk '{split($0, a, "=="); print a[1]}')
 ```
 
-- 通过SQLplus连接Oracle
+## 通过SQLplus连接Oracle
 
 ```bash
 sqlplus USER/PWD@//IP:PORY/DB_NAME
 ```
 
-- 查询dblink的过来的表数据
+## 查询dblink的过来的表数据
 
 ```bash
 select * from orders@lin_ks; # 表名@dblink名  
 ```
 
-- VSCode支持JSX
+## VSCode支持JSX
 
 用户代码片段加入如下配置
 
@@ -200,7 +200,7 @@ Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsock
 
 ```bash
 $ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-$ install -y shadowsocks-libev
+$ yum install -y shadowsocks-libev
 ```
 
 - 修改配置文件
@@ -226,4 +226,10 @@ $ systemctl enable --now shadowsocks-libev
 
 ```bash
 $ systemctl status shadowsocks-libev
+```
+
+## 普通用户执行docker
+
+```bash
+usermod -G docker <USERNAME>
 ```
