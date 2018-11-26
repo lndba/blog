@@ -209,7 +209,7 @@ $ yum install -y shadowsocks-libev
 $ vi /etc/shadowsocks-libev/config.json
 {
     "server": "0.0.0.0",
-    "server_port": 9999,
+    "server_port": 8388,
     "password": "password",
     "timeout": 60,
     "method": "aes-256-cfb"
